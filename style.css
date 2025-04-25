@@ -1,0 +1,551 @@
+/* ===== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===== */
+:root {
+    /* Цвета светлой темы */
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --card-bg: #ffffff;
+    --header-bg: #343a40;
+    --border-color: #dee2e6;
+    --primary: #007bff;
+    --primary-hover: #0069d9;
+    --success: #28a745;
+    --danger: #dc3545;
+    --input-focus: rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Темная тема */
+  .dark {
+    --bg-color: #121212;
+    --text-color: #f8f9fa;
+    --card-bg: #1e1e1e;
+    --header-bg: #0a0a0a;
+    --border-color: #444;
+    --primary: #1e88e5;
+    --primary-hover: #1565c0;
+    --success: #43a047;
+    --danger: #e53935;
+    --input-focus: rgba(30, 136, 229, 0.25);
+  }
+  
+  /* ===== БАЗОВЫЕ СТИЛИ ===== */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* ===== ШАПКА ===== */
+  header {
+    background-color: var(--header-bg);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+  
+  header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  /* ===== КНОПКА АДМИНА ===== */
+  .admin-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  
+  .admin-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .admin-btn i {
+    font-size: 0.9rem;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 600px;
+  }
+
+ .search-container {
+  width: 100%;
+  position: relative;
+}
+  
+#searchInput {
+    width: 100%;
+    padding: 12px 45px; /* Равные отступы по бокам для иконки */
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    text-align: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 16px;
+  }
+
+  #searchInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem var(--input-focus);
+    outline: none;
+  }
+  
+  .search-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 1rem;
+  }
+  
+  /* ===== СПИСОК СТУДЕНТОВ ===== */
+  .students-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  
+  .student-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .student-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .student-card h3 {
+    margin-bottom: 8px;
+    color: var(--text-color);
+  }
+  
+  .student-card p {
+    font-weight: bold;
+    color: var(--primary);
+  }
+  
+  /* ===== ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ===== */
+  .theme-switcher {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+  }
+  
+  #themeToggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  
+  #themeToggle:hover {
+    transform: scale(1.05);
+  }
+  
+  #themeToggle i {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    position: absolute;
+    transition: opacity 0.3s;
+  }
+  
+  #themeToggle .fa-sun {
+    opacity: 0;
+  }
+  
+  .dark #themeToggle .fa-moon {
+    opacity: 0;
+  }
+  
+  .dark #themeToggle .fa-sun {
+    opacity: 1;
+  }
+  
+  /* ===== АДМИН-ПАНЕЛЬ ===== */
+  .admin-container {
+    max-width: 800px;
+  }
+  
+  .admin-controls {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .form-group select,
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s;
+  }
+  
+  .form-group select:focus,
+  .form-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .add-btn {
+    background-color: var(--success);
+    color: white;
+  }
+  
+  .remove-btn {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  .add-btn,
+  .remove-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .add-btn:hover,
+  .remove-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  .back-btn {
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .back-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  /* ===== СТРАНИЦА СТУДЕНТА ===== */
+  .student-profile {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+  }
+  
+  .score-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+  }
+  
+  .score-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--success);
+  }
+  
+  .history {
+    margin-top: 30px;
+  }
+  
+  .history h3 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .history-item {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+  
+  .positive {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+  }
+  
+  .negative {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+  }
+  
+  /* ===== АДАПТИВНОСТЬ ===== */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+    
+    .admin-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .students-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    #themeToggle {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .search-container {
+      max-width: 100%;
+    }
+  }
+
+  #searchInput::placeholder {
+    color: #999;
+    text-align: center;
+    transition: opacity 0.3s;
+  }
+
+  #searchInput:focus {
+    background-image: none;
+    padding-left: 20px;
+    text-align: left;
+  }
+
+  .search-container i {
+    display: none;
+  }
+  
+  /* Эффект при фокусе */
+  #searchInput:focus {
+    padding-left: 20px; /* Сдвигаем текст при фокусе */
+    text-align: left;
+  }
+  
+  #searchInput:focus + i {
+    opacity: 0; /* Прячем иконку при фокусе */
+  }
+
+/* ===== МОДАЛЬНОЕ ОКНО ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s;
+}
+
+.modal {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.password-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#modalPasswordInput {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding-right: 40px;
+}
+
+#togglePassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+.submit-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalOpen {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+  }
+  
+  .admin-btn {
+      width: 100%;
+      justify-content: center;
+  }
+  
+  .students-list {
+      grid-template-columns: 1fr;
+  }
+  
+  #themeToggle {
+      width: 40px;
+      height: 40px;
+  }
+  
+  .search-container {
+      max-width: 100%;
+  }
+}
